@@ -9,7 +9,7 @@ permalink: /skills/
 
   <div class="skills-header">
     <h1 class="title">TECHNICAL STACK</h1>
-    <p class="tagline">문제를 해결하는 기술 / 퍼포먼스를 만드는 로직</p>
+    <p class="tagline">문제를 해결하는 기술과 퍼포먼스를 만드는 로직</p>
   </div>
 
   <div class="skills-container">
