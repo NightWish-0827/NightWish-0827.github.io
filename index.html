@@ -1,0 +1,223 @@
+---
+layout: single
+author_profile: true
+---
+
+<div class="welcome-text">
+  <h1>안녕하세요! 👋</h1>
+  <p>궁금하신 사항이나, 작업 요청은 메일로 문의 해주세요!</p>
+  <p>빠른 시일 내로 답변 드리겠습니다!</p>
+</div>
+
+<canvas id="bg-particle-canvas"></canvas>
+
+<style>
+/* 상단 배너 영역 */
+.masthead {
+  background-color: #252a34 !important; 
+  width: 100vw !important;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  z-index: 20; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+.masthead__inner-wrap {
+  background-color: transparent !important; 
+  max-width: 1280px !important; 
+  margin: 0 auto !important; 
+}
+
+/* 파티클 배경 */
+#bg-particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -100; 
+  pointer-events: none; 
+}
+
+body {
+  /* 배경색을 테마 기본 색상에 완벽히 맞춤 */
+  background-color: #1e222a !important; 
+  color: #e2e8f0;
+}
+
+.page__inner-wrap, .page, .archive, .sidebar {
+  background-color: transparent !important; 
+}
+
+/* 환영 텍스트 영역 (화면 정중앙 고정) */
+.welcome-text {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 100%; 
+  text-align: center;
+  z-index: 10; 
+  transition: opacity 0.5s ease-out; 
+  pointer-events: none; 
+}
+
+.welcome-text h1 { 
+  font-size: 2.5rem; 
+  margin-bottom: 0.5rem; 
+  border-bottom: none; 
+  color: #f8fafc;
+}
+
+.welcome-text p { 
+  font-size: 1.1rem; 
+  color: #94a3b8; 
+  margin-bottom: 0.2rem;
+}
+</style>
+
+<script>
+  const canvas = document.getElementById('bg-particle-canvas');
+  const ctx = canvas.getContext('2d');
+  
+  const welcomeText = document.querySelector('.welcome-text');
+  let fadeTimeout;
+
+  let particlesArray = [];
+  let w, h;
+
+  const mouse = {
+    x: null,
+    y: null,
+    radius: 120 
+  }
+
+  window.addEventListener('mousemove', function(event) {
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+
+    welcomeText.style.opacity = '0';
+
+    clearTimeout(fadeTimeout);
+    fadeTimeout = setTimeout(() => {
+      welcomeText.style.opacity = '1';
+    }, 1500);
+  });
+
+  window.addEventListener('mouseout', function() {
+    mouse.x = undefined;
+    mouse.y = undefined;
+    
+    clearTimeout(fadeTimeout);
+    welcomeText.style.opacity = '1';
+  });
+
+  function resizeReset() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  
+  window.addEventListener('resize', function() {
+    resizeReset();
+    init();
+  });
+
+  class Particle {
+    constructor(x, y, directionX, directionY, size, color) {
+      this.x = x;
+      this.y = y;
+      this.directionX = directionX;
+      this.directionY = directionY;
+      this.size = size;
+      this.color = color;
+      this.density = (Math.random() * 30) + 1;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+
+    update() {
+      if (this.x > w || this.x < 0) this.directionX = -this.directionX;
+      if (this.y > h || this.y < 0) this.directionY = -this.directionY;
+
+      let dx = mouse.x - this.x;
+      let dy = mouse.y - this.y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < mouse.radius) {
+        let forceDirectionX = dx / distance;
+        let forceDirectionY = dy / distance;
+        let force = (mouse.radius - distance) / mouse.radius;
+        let directionX = forceDirectionX * force * this.density;
+        let directionY = forceDirectionY * force * this.density;
+
+        this.x -= directionX;
+        this.y -= directionY;
+      } else {
+        this.x += this.directionX;
+        this.y += this.directionY;
+      }
+      this.draw();
+    }
+  }
+
+  function init() {
+    particlesArray = [];
+    resizeReset();
+    let numberOfParticles = (h * w) / 8000; 
+
+    for (let i = 0; i < numberOfParticles; i++) {
+      let size = (Math.random() * 2) + 1;
+      let x = (Math.random() * ((w - size * 2) - (size * 2)) + size * 2);
+      let y = (Math.random() * ((h - size * 2) - (size * 2)) + size * 2);
+      let directionX = (Math.random() * 1.5) - 0.75;
+      let directionY = (Math.random() * 1.5) - 0.75;
+      
+      // 파티클(점) 색상 변경: #252a34 배경과 어울리는 반투명 화이트
+      let color = 'rgba(255, 255, 255, 0.8)'; 
+
+      particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+    }
+  }
+
+  function connect() {
+    let opacityValue = 1;
+    for (let a = 0; a < particlesArray.length; a++) {
+      for (let b = a; b < particlesArray.length; b++) {
+        let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                     + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+        
+        if (distance < (w / 7) * (h / 7)) {
+          opacityValue = 1 - (distance / 15000);
+          // 선 색상 변경: 배경에 자연스럽게 녹아드는 화이트 그라데이션
+          ctx.strokeStyle = 'rgba(255, 255, 255,' + opacityValue * 0.5 + ')'; 
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+          ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, w, h);
+
+    for (let i = 0; i < particlesArray.length; i++) {
+      particlesArray[i].update();
+    }
+    connect();
+  }
+
+  init();
+  animate();
+</script>

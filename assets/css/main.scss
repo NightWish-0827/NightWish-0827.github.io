@@ -1,0 +1,16 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+search: false
+---
+
+.page__footer {
+  background-color: #252a34 !important; /* 원하시는 색상(Hex Code)으로 변경하세요 */
+  /* 필요하다면 상단 배너처럼 경계선이나 그림자도 추가할 수 있습니다 */
+  border-top: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
