@@ -34,7 +34,7 @@ permalink: /skills/
       <ul class="skill-list">
         <li>메모리 관리 및 GC 최적화</li>
         <li>Draw Call 절감 및 병목 지점 해결</li>
-        <li>PowerPool 등 고성능 풀링 솔루션 구축</li>
+        <li>최적화와 관련된 고성능 솔루션 구축</li>
       </ul>
     </div>
 
