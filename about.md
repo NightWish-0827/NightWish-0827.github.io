@@ -15,7 +15,7 @@ permalink: /about/
   <div class="info-grid">
     <div class="info-item">
       <span class="label">AGE</span>
-      <span class="value">24 (2001.08.27)</span>
+      <span class="value">만 24 (2001.08.27)</span>
     </div>
     <div class="info-item">
       <span class="label">CONTACT</span>

@@ -7,7 +7,7 @@ classes: wide
 
 <div class="center-layout-wrapper">
   <header class="projects-header">
-    <h1 class="title">TECH SUPPORT</h1>
+    <h1 class="title">TECH SUPPORTS</h1>
     <p class="tagline">오픈 소스 SDK 기술 지원</p>
   </header>
 
