@@ -19,7 +19,7 @@ permalink: /about/
     </div>
     <div class="info-item">
       <span class="label">CONTACT</span>
-      <span class="value">+82 10-9265-8660</span>
+      <span class="value">NEED TOKEN</span>
     </div>
     <div class="info-item">
       <span class="label">EMAIL</span>
