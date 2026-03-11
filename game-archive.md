@@ -254,35 +254,59 @@ letter-spacing:2px;
 text-transform:uppercase;
 }
 
-.full-bleed-container{
-width:auto;
-margin-left:calc(-50vw + 50%);
-margin-right:calc(-50vw + 50%);
-position:relative;
-overflow:hidden;
+/* 기존 .full-bleed-container에 위아래 경계선 살짝 추가 (선택사항) */
+.full-bleed-container {
+  width: auto;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.entries-horizontal{
+/* 👇 새롭게 추가: 인터렉션 범위를 알려주는 어두운 블러+패턴 트랙 */
+.full-bleed-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  
+  /* 기본 배경(#252a34)보다 살짝 더 어두운 베이스 컬러 */
+  background-color: #1b1e25; 
+  
+  /* 은은한 도트 패턴 (너무 튀지 않게 투명도 조절) */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  
+  /* 안쪽으로 짙은 그림자를 주어, 화면 안으로 파인 듯한 공간감과 어두운 블러 효과 제공 */
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6);
+  
+  z-index: 0; /* 카드들보다 뒤로 배치 */
+  pointer-events: none; /* 스크롤이나 클릭 이벤트를 방해하지 않도록 설정 */
+}
 
---card-width:380px;
+/* 기존 .entries-horizontal 수정 */
+.entries-horizontal {
+  /* 👇 추가: 배경 위로 콘텐츠가 올라오도록 설정 */
+  position: relative; 
+  z-index: 1;         
 
-display:flex;
-gap:30px;
+  --card-width: 380px;
+  display: flex;
+  gap: 30px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 
-overflow-x:scroll;
-overflow-y:hidden;
+  /* 👇 수정: 배경 패턴이 조금 더 잘 보이도록 상하 여백 확장 (기존 20px -> 50px) */
+  padding-top: 50px;  
+  padding-bottom: 50px; 
 
-padding-top:20px;
-padding-bottom:20px;
-
-padding-left:calc(50vw - (var(--card-width) / 2));
-padding-right:calc(50vw - (var(--card-width) / 2));
-
-scroll-snap-type:x mandatory;
-scroll-behavior:smooth;
-
--ms-overflow-style:none;
-scrollbar-width:none;
+  padding-left: calc(50vw - (var(--card-width) / 2));
+  padding-right: calc(50vw - (var(--card-width) / 2));
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .entries-horizontal::-webkit-scrollbar{
