@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "Games"
+    url: /categories/games/
   - title: "Tech Supports"
     url: /categories/sdks/
   - title: "Skills"
