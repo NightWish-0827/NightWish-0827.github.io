@@ -31,11 +31,13 @@ classes: wide
 {% if post.header.teaser %}
 <div class="game-teaser">
 <a href="{{ post.url | relative_url }}" draggable="false">
-<img src="{{ post.header.teaser | relative_url }}" draggable="false">
+<img src="{{ post.header.teaser | relative_url }}"
+     draggable="false"
+     style="object-position: center {% if post.teaser_position %}{{ post.teaser_position }}{% else %}center{% endif %};">
 </a>
 
 {% if post.status %}
-<span class="status-badge">{{ post.status }}</span>
+<span class="status-badge status-{{ post.status | downcase | replace: ' ', '-' }}">{{ post.status }}</span>
 {% endif %}
 
 </div>
@@ -57,6 +59,12 @@ classes: wide
 <span class="badge">{{ post.genre }}</span>
 {% endif %}
 
+{% if post.tags %}
+{% for tag in post.tags %}
+<span class="badge tag-badge">{{ tag }}</span>
+{% endfor %}
+{% endif %}
+
 </div>
 
 <h2 class="game-title">
@@ -76,6 +84,20 @@ classes: wide
 </span>
 {% endif %}
 
+{% if post.team_size %}
+<span class="info-item">
+<i class="fas fa-users"></i>
+{{ post.team_size }}인 팀
+</span>
+{% endif %}
+
+{% if post.duration %}
+<span class="info-item">
+<i class="fas fa-clock"></i>
+{{ post.duration }}
+</span>
+{% endif %}
+
 {% if post.date %}
 <span class="info-item">
 <i class="far fa-calendar-alt"></i>
@@ -84,6 +106,26 @@ classes: wide
 {% endif %}
 
 </div>
+
+{% if post.play_url or post.itch_url or post.github_url %}
+<div class="game-links">
+{% if post.play_url %}
+<a href="{{ post.play_url }}" class="game-link-btn play-btn" target="_blank" rel="noopener">
+  <i class="fas fa-play"></i> Play
+</a>
+{% endif %}
+{% if post.itch_url %}
+<a href="{{ post.itch_url }}" class="game-link-btn itch-btn" target="_blank" rel="noopener">
+  <i class="fab fa-itch-io"></i> itch.io
+</a>
+{% endif %}
+{% if post.github_url %}
+<a href="{{ post.github_url }}" class="game-link-btn github-btn" target="_blank" rel="noopener">
+  <i class="fab fa-github"></i> GitHub
+</a>
+{% endif %}
+</div>
+{% endif %}
 
 </div>
 </div>
@@ -98,7 +140,7 @@ classes: wide
 
 <div class="footer-section">
 <p class="highlight-text">
-<strong>"세상에 공개될 준비를 마친 프로젝트들입니다."</strong>
+<strong>"집요함으로 게임을 제작합니다."</strong>
 </p>
 </div>
 
@@ -288,6 +330,7 @@ box-shadow:0 15px 40px rgba(77,163,255,0.15)!important;
 position:relative;
 width:100%;
 border-bottom:1px solid #3d444d;
+overflow:hidden;
 }
 
 .game-teaser img{
@@ -297,24 +340,48 @@ object-fit:cover;
 display:block;
 transition:transform .5s ease;
 pointer-events:none;
+/* object-position은 인라인 스타일로 post.teaser_position 값을 적용 */
 }
 
 .game-card:hover .game-teaser img{
 transform:scale(1.03);
 }
 
+/* ── Status Badge 정규화 ── */
 .status-badge{
 position:absolute;
 top:15px;
 right:15px;
-background:rgba(26,32,40,.85);
-color:#4da3ff;
 padding:6px 12px;
 border-radius:20px;
 font-size:.8em;
 font-weight:bold;
 backdrop-filter:blur(4px);
+background:rgba(26,32,40,.85);
+}
+
+/* Complete → 초록 */
+.status-badge.status-complete{
+color:#3fb950;
+border:1px solid #3fb950;
+}
+
+/* In Progress → 파란 */
+.status-badge.status-in-progress{
+color:#4da3ff;
 border:1px solid #4da3ff;
+}
+
+/* Pause → 빨간 */
+.status-badge.status-pause{
+color:#f85149;
+border:1px solid #f85149;
+}
+
+/* 미정의 상태 폴백 */
+.status-badge:not(.status-complete):not(.status-in-progress):not(.status-pause){
+color:#cbd5e0;
+border:1px solid #3d444d;
 }
 
 .game-content{
@@ -349,6 +416,12 @@ color:#fff;
 border:1px solid #3d444d;
 }
 
+.tag-badge{
+background:transparent;
+color:#768390;
+border:1px solid #3d444d;
+}
+
 .game-title{
 font-size:1.3em!important;
 margin:0 0 .5em 0!important;
@@ -375,7 +448,8 @@ flex-grow:1;
 
 .game-footer-info{
 display:flex;
-justify-content:space-between;
+flex-wrap:wrap;
+gap:.5em 1em;
 align-items:center;
 padding-top:1em;
 border-top:1px solid #3d444d;
@@ -386,6 +460,49 @@ color:#768390;
 .info-item i{
 margin-right:5px;
 color:#4da3ff;
+}
+
+/* ── 링크 버튼 ── */
+.game-links{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:1em;
+padding-top:1em;
+border-top:1px solid #3d444d;
+}
+
+.game-link-btn{
+display:inline-flex;
+align-items:center;
+gap:5px;
+padding:5px 14px;
+border-radius:8px;
+font-size:.78em;
+font-weight:600;
+text-decoration:none!important;
+transition:opacity .2s ease, transform .2s ease;
+}
+
+.game-link-btn:hover{
+opacity:.85;
+transform:translateY(-1px);
+}
+
+.play-btn{
+background:#3fb950;
+color:#0d1117!important;
+}
+
+.itch-btn{
+background:#fa5c5c;
+color:#fff!important;
+}
+
+.github-btn{
+background:#3d444d;
+color:#cbd5e0!important;
+border:1px solid #555f6d;
 }
 
 .divider{
