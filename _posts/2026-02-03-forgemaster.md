@@ -44,6 +44,14 @@ date: 2026-02-03
 
 ## 제작한 SDK를 검증하기 위한 비 상업용 프로젝트 입니다. 
 
+화제의 D2G 장르 **Forge Master** 게임을 클로닝 했습니다. <br>
+개발사는 독일의 **Lessmore** 입니다.
+
+리소스는 **[Forge Master](https://play.google.com/store/apps/details?id=com.hariwn.legendofcivilizations&hl=en)** 원작을 Dotpeek 활용하여 분해 후 사용했습니다.<br>
+<span style="color:red">``상업적 용도가 아닌, 단순 개인 테스트 프로젝트를 위해 활용 되었습니다.``</span> 
+
+---
+
 ## Screen Shots & Videos
 
 <img src="/assets/images/tycoon-teaser.png" width="300">
@@ -60,7 +68,9 @@ date: 2026-02-03
 |-----|-------------|
 | **[UNFinder](https://github.com/NightWish-0827/UNFinder)** | Find 심벌을 Editor 에서 최적화 하여 사용 |
 | **[PowerPool](https://github.com/NightWish-0827/PowerPool)** | 초고성능 Object Pooling 시스템 |
-| **[UNInject]** | Unity 직렬화 Bake Up을 활용한 Lapid Dependecy Injection SDK (UPM 예정) |
+| **[UNInject]** | Unity 직렬화 Bake Up을 활용한 Lapid Dependecy Injection SDK (UPM 지원 예정) |
+
+---
 
 ## Open Source SDK List
 
@@ -72,4 +82,11 @@ date: 2026-02-03
 
 ---
 
+## Test Device
 
+| 테스트 기기 | 컴파일 |
+|------------|--------|
+| **LG VELVET (LM-G900N)** | IL2CPP |
+| **Iphone 15 (MTP43KH/A)** | Dev Build | 
+
+---

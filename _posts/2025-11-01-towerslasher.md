@@ -42,4 +42,21 @@ tags:
 date: 2025-11-01
 ---
 
-여기에 본문 내용 작성...
+## 회사 보안으로, 정보 공개가 불가능한 프로젝트 입니다.
+
+**주식회사 111%** 재직 중 개발을 진행했습니다. <br>
+
+단순 영상만을 포트폴리오 및 이력서에 게시하며,  
+코드 레벨 및 런타임의 구조 공개가 이뤄지지 않습니다. <br>
+
+<span style="color:red">``이를 상업적으로 활용한 사례가 일체 없음을 밝힙니다.``</span> 
+
+---
+
+## Screen Shots & Videos
+
+<video controls width="300">
+  <source src="/assets/videos/ts.mp4" type="video/mp4">
+</video>
+
+--- 
