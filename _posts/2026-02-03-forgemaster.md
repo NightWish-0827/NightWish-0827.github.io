@@ -54,12 +54,13 @@ date: 2026-02-03
 
 ## Screen Shots & Videos
 
+<figure class="half">
 <img src="/assets/images/tycoon-teaser.png" width="300">
 
 <video controls width="300">
   <source src="/assets/videos/fg.mp4" type="video/mp4">
 </video>
-
+</figure>
 ---
 
 ## My Package List
