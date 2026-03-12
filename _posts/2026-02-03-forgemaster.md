@@ -1,6 +1,7 @@
 ---
 title: "Forge Master Cloning"
 categories: [games]
+classes: wide
 header:
   teaser: /assets/images/tycoon-teaser.png
 
@@ -44,8 +45,7 @@ date: 2026-02-03
 
 ## 제작한 SDK를 검증하기 위한 비 상업용 프로젝트 입니다. 
 
-화제의 D2G 장르 **Forge Master** 게임을 클로닝 했습니다. <br>
-개발사는 독일의 **Lessmore** 입니다.
+화제의 D2G 장르. 독일 개발사 **Lessmore**의 **Forge Master** 게임을 클로닝 했습니다. 
 
 리소스는 **[Forge Master](https://play.google.com/store/apps/details?id=com.hariwn.legendofcivilizations&hl=en)** 원작을 Dotpeek 활용하여 분해 후 사용했습니다.<br>
 <span style="color:red">``상업적 용도가 아닌, 단순 개인 테스트 프로젝트를 위해 활용 되었습니다.``</span> 
@@ -88,5 +88,14 @@ date: 2026-02-03
 |------------|--------|
 | **LG VELVET (LM-G900N)** | IL2CPP |
 | **Iphone 15 (MTP43KH/A)** | Dev Build | 
+
+---
+
+## 간단한 후기
+
+잉여 시간에 SDK TC 진행겸 제작하게 된 게임입니다.<br>
+
+원작의 리소스가 단순함을 넘어, **특이점이 온 수준의 표현 억제**가 특징입니다. <br> 
+하지만 의외로 게임 자체가 중독성이 매우 강하여, 개발 하면서도 제법 즐겁게 진행했습니다. 
 
 ---
