@@ -9,50 +9,6 @@ search: false
   border-top: 1px solid rgba(255, 255, 255, 0.05); 
 }
 
-.auto-link-card{
-  width:700px;
-  margin:20px 0;
-}
-
-.auto-link-card a{
-  text-decoration:none;
-  color:inherit;
-}
-
-.auto-link-card-inner{
-  display:flex;
-  border:1px solid #e5e5e5;
-  border-radius:12px;
-  overflow:hidden;
-  padding:12px;
-  gap:12px;
-  transition:.15s;
-}
-
-.auto-link-card-inner:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 16px rgba(0,0,0,.08);
-}
-
-.auto-link-card-inner img{
-  width:48px;
-  height:48px;
-}
-
-.auto-link-card-body{
-  flex:1;
-}
-
-.auto-link-card-title{
-  font-weight:600;
-  margin-bottom:4px;
-}
-
-.auto-link-card-url{
-  font-size:12px;
-  color:#888;
-}
-
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin

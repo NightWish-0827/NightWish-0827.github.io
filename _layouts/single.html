@@ -51,9 +51,8 @@ layout: default
         {% endif %}
         {{ content }}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
-      </section>
 
-<script src="/assets/js/linkcard.js"></script>
+      </section>
 
       <footer class="page__meta">
         {% if site.data.ui-text[locale].meta_label %}
