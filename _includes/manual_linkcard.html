@@ -1,0 +1,15 @@
+<div class="notion-link-card-wrapper" markdown="0">
+  <a href="{{ include.url }}" class="notion-link-card" target="_blank" rel="noopener noreferrer">
+    <div class="notion-link-card-content">
+      <div class="notion-link-card-title">{{ include.title }}</div>
+      <div class="notion-link-card-desc">{{ include.desc }}</div>
+      <div class="notion-link-card-url">
+        <img src="https://www.google.com/s2/favicons?domain={{ include.url }}&sz=32" alt="favicon" class="notion-link-card-favicon">
+        <span>{{ include.url }}</span>
+      </div>
+    </div>
+    {% if include.image and include.image != '' %}
+    <div class="notion-link-card-image" style="background-image: url('{{ include.image }}');"></div>
+    {% endif %}
+  </a>
+</div>

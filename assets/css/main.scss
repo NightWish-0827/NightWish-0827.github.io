@@ -9,6 +9,87 @@ search: false
   border-top: 1px solid rgba(255, 255, 255, 0.05); 
 }
 
+/* 노션 스타일 링크 카드 */
+.notion-link-card {
+  display: flex;
+  background-color: #2b2b2b; /* 다크 모드 배경색 */
+  border: 1px solid #444;    /* 은은한 테두리 */
+  border-radius: 8px;        /* 둥근 모서리 */
+  overflow: hidden;
+  text-decoration: none !important;
+  color: inherit !important;
+  margin: 1.5rem 0;
+  height: 120px;             /* 카드 높이 고정 */
+  transition: background-color 0.2s ease;
+}
+
+.notion-link-card:hover {
+  background-color: #333;    /* 마우스 올렸을 때 살짝 밝아짐 */
+}
+
+.notion-link-card-content {
+  flex: 1 1 0%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.notion-link-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;            /* 흰색 제목 */
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notion-link-card-desc {
+  font-size: 13px;
+  color: #a0a0a0;            /* 회색 설명 텍스트 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;     /* 설명은 2줄까지만 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.notion-link-card-url {
+  font-size: 12px;
+  color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notion-link-card-favicon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 2px;
+  background-color: #fff;    /* 투명 아이콘 대비용 배경 */
+}
+
+.notion-link-card-image {
+  width: 250px;              /* 우측 썸네일 너비 */
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-left: 1px solid #444;
+}
+
+/* 모바일 화면 대응 (폭이 좁아지면 이미지 숨김) */
+@media (max-width: 600px) {
+  .notion-link-card-image {
+    display: none;
+  }
+}
+
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin

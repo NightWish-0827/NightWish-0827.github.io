@@ -47,9 +47,18 @@ date: 2026-02-03
 
 화제의 D2G 장르. 독일 개발사 **Lessmore**의 **Forge Master** 게임을 클로닝 했습니다. 
 
-리소스는 **[Forge Master](https://play.google.com/store/apps/details?id=com.hariwn.legendofcivilizations&hl=en)** 원작을 Dotpeek 활용하여 분해 후 사용했습니다.<br>
+리소스는 **[Forge Master](https://play.google.com/store/apps/details?id=com.hariwn.legendofcivilizations&hl=en)** 원작을 Dotpeek 활용하여 분해 후 사용했습니다. <br>
+
 <span style="color:red">``상업적 용도가 아닌, 단순 개인 테스트 프로젝트를 위해 활용 되었습니다.``</span> 
 
+<div style="width: 700px;">
+{% include manual_linkcard.html 
+   url="https://play.google.com/store/apps/details?id=com.hariwn.legendofcivilizations&hl=en" 
+   title="Forge Master" 
+   desc="Are you ready for this adventure?." 
+   image="https://play-lh.googleusercontent.com/emNDoWnEo13CRoLpnoUfhygnTXQ7zQVZ9SPpcLWZrSEOZ8Jbk6dhx0bZ2zgY0BFg4g=w240-h480-rw" 
+%}
+</div>
 ---
 
 ## Screen Shots & Videos
