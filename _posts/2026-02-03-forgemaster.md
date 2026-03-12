@@ -42,4 +42,34 @@ tags:
 date: 2026-02-03
 ---
 
-여기에 본문 내용 작성...
+## 제작한 SDK를 검증하기 위한 비 상업용 프로젝트 입니다. 
+
+## Screen Shots & Videos
+
+<img src="/assets/images/tycoon-teaser.png" width="300">
+
+<video controls width="300">
+  <source src="/assets/videos/fg.mp4" type="video/mp4">
+</video>
+
+---
+
+## My Package List
+
+| SDK | Description |
+|-----|-------------|
+| **[UNFinder](https://github.com/NightWish-0827/UNFinder)** | Find 심벌을 Editor 에서 최적화 하여 사용 |
+| **[PowerPool](https://github.com/NightWish-0827/PowerPool)** | 초고성능 Object Pooling 시스템 |
+| **[UNInject]** | Unity 직렬화 Bake Up을 활용한 Lapid Dependecy Injection SDK (UPM 예정) |
+
+## Open Source SDK List
+
+| SDK | Description |
+|-----|-------------|
+| **[Unitask](https://github.com/Cysharp/UniTask)** | 스레드 기반 비동기 메서드 지원 |
+| **[DOTween](https://github.com/Demigiant/dotween)** | Unity 스크립트 애니메이션 시퀀스 |
+| **[Json For Unity](https://github.com/applejag/Newtonsoft.Json-for-Unity)** | Json 읽기 쓰기 호환 |
+
+---
+
+
