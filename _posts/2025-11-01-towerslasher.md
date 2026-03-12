@@ -1,6 +1,7 @@
 ---
 title: "타워 슬래셔"
 categories: [games]
+classes: wide
 header:
   teaser: /assets/images/tb-teaser.png
 
@@ -46,8 +47,7 @@ date: 2025-11-01
 
 **주식회사 111%** 재직 중 개발을 진행했습니다. <br>
 
-단순 영상만을 포트폴리오 및 이력서에 게시하며,  
-코드 레벨 및 런타임의 구조 공개가 이뤄지지 않습니다. <br>
+단순 영상만을 포트폴리오 및 이력서에 게시하며, 코드 레벨 및 런타임의 구조 공개가 이뤄지지 않습니다. <br>
 
 <span style="color:red">``이를 상업적으로 활용한 사례가 일체 없음을 밝힙니다.``</span> 
 
@@ -55,8 +55,38 @@ date: 2025-11-01
 
 ## Screen Shots & Videos
 
+<figure class="half">
+<img src="/assets/images/cap 1.png" width="500">
+<img src="/assets/images/cap 2.png" width="500">
+</figure>
+
+<figure class="half">
+<img src="/assets/images/cap 3.png" width="500">
+<img src="/assets/images/cap 4.png" width="500">
+</figure>
+
+<figure class="half">
+<img src="/assets/images/cap 5.png" width="500">
+<img src="/assets/images/cap 6.png" width="500">
+</figure>
+
 <video controls width="300">
   <source src="/assets/videos/ts.mp4" type="video/mp4">
 </video>
 
 --- 
+
+## 간단한 제작기
+
+정말 간만에 쉐이더를 극한으로 다뤄가며 제작한 프로젝트입니다. <br>
+
+개인적으로 이러한 아트 스타일을 굉장히 선호하기 때문에, <span style="color:yellow">**최대한 아름답게**</span>  제작하고 싶었습니다. <br>
+
+본디 모바일에서는 투명 쉐이더나 굴절은 거의 회피하며 제작을 진행하지만, <br> 
+최적화를 극한의 극한까지 하여.. 10장 가까이 겹쳐 사용했습니다. <br>
+
+성능은 로우 ~ 미드 티어 기기에서 **안정적으로 60프레임**이 보장되었습니다. <br>
+
+짧은 기간이었지만, 수려한 아트 리소스 작업 해주신 팀원분께 무한한 감사를 드립니다. 🥹 
+
+---
