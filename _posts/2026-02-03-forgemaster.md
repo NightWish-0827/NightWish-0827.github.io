@@ -49,7 +49,7 @@ date: 2026-02-03
 
 리소스는 **[Forge Master](https://play.google.com/store/apps/details?id=com.hariwn.legendofcivilizations&hl=en)** 원작을 Dotpeek 활용하여 분해 후 사용했습니다. <br>
 
-<span style="color:red">``상업적 용도가 아닌, 단순 개인 테스트 프로젝트를 위해 활용 되었습니다.``</span> 
+<span style="color:red">``이를 상업적으로 활용한 사례가 일체 없음을 밝힙니다.``</span> 
 
 <div style="width: 700px;">
 {% include manual_linkcard.html 
