@@ -239,6 +239,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
-      share: true
-      related: true
+      read_time: false
+      share: false
+      related: false
+show_date: false # 이 줄을 추가하세요!
