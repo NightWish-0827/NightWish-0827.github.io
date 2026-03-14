@@ -51,7 +51,7 @@ date: 2026-02-03
 
 <span style="color:red">``이를 상업적으로 활용한 사례가 일체 없음을 밝힙니다.``</span> 
 
-<div style="width: 700px;">
+<div style="width: 100%; max-width: 700px;">
 {% include manual_linkcard.html 
    url="https://play.google.com/store/apps/details?id=com.hariwn.legendofcivilizations&hl=en" 
    title="Forge Master" 

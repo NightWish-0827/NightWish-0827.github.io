@@ -58,7 +58,7 @@ date: 2024-03-01
 
 <img src="/assets/images/gs_teaser.png" width="700"> 
 
-<video controls width="700">
+<video controls style="width: 100%; max-width: 700px; height: auto;">
   <source src="/assets/videos/gs.mp4" type="video/mp4">
 </video>
 
