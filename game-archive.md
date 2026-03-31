@@ -548,62 +548,83 @@ opacity:.8;
 </style>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.getElementById("games-scroll-container");
+  const toggle = document.getElementById("games-order-toggle");
 
-document.addEventListener("DOMContentLoaded",()=>{
+  // UX 개선: 연속적인 스크롤 상태를 추적하기 위한 변수
+  let scrollTimeout;
+  let isHorizontalScrolling = false;
 
-const slider=document.getElementById("games-scroll-container")
-const toggle=document.getElementById("games-order-toggle")
+  slider.addEventListener("wheel", (e) => {
+    const isHoveringCard = e.target.closest(".game-card");
 
-slider.addEventListener("wheel",(e)=>{
+    // 💡 핵심 UX 로직 (Scroll Intent Lock)
+    // 현재 마우스가 카드 위에 없더라도, 직전까지 '연속적인 가로 스크롤 동작 중'이었다면 이벤트를 계속 가로챕니다.
+    if (!isHoveringCard && !isHorizontalScrolling) {
+      return; 
+    }
 
-e.preventDefault()
+    // 기본 상하 스크롤을 막고 가로 스크롤 제어 시작
+    e.preventDefault();
 
-const dir=e.deltaY>0||e.deltaX>0?1:-1
-const cards=[...slider.children]
+    // 스크롤 상태를 '활성화'하고 기존 타이머를 취소합니다.
+    isHorizontalScrolling = true;
+    clearTimeout(scrollTimeout);
+    
+    // 휠 동작이 멈추고 150ms가 지나면 가로 스크롤 의도가 끝난 것으로 간주하여 상태를 해제합니다.
+    scrollTimeout = setTimeout(() => {
+      isHorizontalScrolling = false;
+    }, 150);
 
-const sliderCenter=slider.scrollLeft+slider.clientWidth/2
-let closestIdx=0
-let min=Infinity
-cards.forEach((card,i)=>{
-const cardCenter=card.offsetLeft+card.clientWidth/2
-const d=Math.abs(cardCenter-sliderCenter)
-if(d<min){min=d;closestIdx=i}
-})
+    const dir = e.deltaY > 0 || e.deltaX > 0 ? 1 : -1;
+    const cards = [...slider.children];
 
-const nextIdx=Math.min(Math.max(closestIdx+dir,0),cards.length-1)
-snapTo(cards[nextIdx])
+    const sliderCenter = slider.scrollLeft + slider.clientWidth / 2;
+    let closestIdx = 0;
+    let min = Infinity;
+    
+    cards.forEach((card, i) => {
+      const cardCenter = card.offsetLeft + card.clientWidth / 2;
+      const d = Math.abs(cardCenter - sliderCenter);
+      if (d < min) { 
+        min = d; 
+        closestIdx = i; 
+      }
+    });
 
-},{passive:false})
+    const nextIdx = Math.min(Math.max(closestIdx + dir, 0), cards.length - 1);
+    snapTo(cards[nextIdx]);
 
-function snapTo(card){
-const sliderRect=slider.getBoundingClientRect()
-const cardRect=card.getBoundingClientRect()
-const offset=slider.scrollLeft+(cardRect.left-sliderRect.left)-(sliderRect.width/2)+(cardRect.width/2)
-slider.scrollTo({left:offset,behavior:"smooth"})
-}
+  }, { passive: false });
 
-const first=slider.children[0]
-if(first){
-requestAnimationFrame(()=>snapTo(first))
-}
+  function snapTo(card) {
+    const sliderRect = slider.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const offset = slider.scrollLeft + (cardRect.left - sliderRect.left) - (sliderRect.width / 2) + (cardRect.width / 2);
+    slider.scrollTo({ left: offset, behavior: "smooth" });
+  }
 
-toggle.addEventListener("click",()=>{
+  // 초기 로드 시 첫 번째 카드로 스냅
+  const first = slider.children[0];
+  if (first) {
+    requestAnimationFrame(() => snapTo(first));
+  }
 
-const isOld=toggle.classList.toggle("is-old")
-const label=toggle.querySelector(".sort-label")
-label.textContent=isOld?"오래된순":"최신순"
+  // 정렬 버튼 토글 로직
+  toggle.addEventListener("click", () => {
+    const isOld = toggle.classList.toggle("is-old");
+    const label = toggle.querySelector(".sort-label");
+    label.textContent = isOld ? "오래된순" : "최신순";
 
-const items=[...slider.children]
-items.reverse()
-items.forEach(el=>slider.appendChild(el))
+    const items = [...slider.children];
+    items.reverse();
+    items.forEach(el => slider.appendChild(el));
 
-requestAnimationFrame(()=>{
-const first=slider.children[0]
-if(first) snapTo(first)
-})
-
-})
-
-})
-
+    requestAnimationFrame(() => {
+      const first = slider.children[0];
+      if (first) snapTo(first);
+    });
+  });
+});
 </script>
