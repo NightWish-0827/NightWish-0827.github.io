@@ -3,11 +3,13 @@ layout: single
 author_profile: true
 ---
 
+<!--
 <div class="welcome-text">
   <h1>안녕하세요! 👋</h1>
   <p>궁금하신 사항이나, 작업 요청은 메일로 문의 해주세요!</p>
   <p>빠른 시일 내로 답변 드리겠습니다!</p>
 </div>
+-->
 
 <canvas id="bg-particle-canvas"></canvas>
 
@@ -77,6 +79,102 @@ body {
   color: #94a3b8; 
   margin-bottom: 0.2rem;
 }
+</style>
+
+<div class="main-content-header">
+  <a href="https://nightwish-0827.github.io/UNInject/" target="_blank" rel="noopener noreferrer" class="notion-special-card content-top-version">
+    <div class="notion-icon">
+      <img src="https://nightwish-0827.github.io/UNInject/img/uninjectlogo.ico" alt="UNInject Wiki" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png'">
+    </div>
+    <div class="notion-content">
+      <h3 class="notion-title">UNInject Official Wiki</h3>
+      <p class="notion-desc">UNInject 위키가 개설되었습니다.</p>
+    </div>
+    <div class="notion-action">
+      <span>Wiki 방문하기</span> <i class="fas fa-fw fa-arrow-right"></i>
+    </div>
+  </a>
+</div>
+
+<style>
+  /* 컨텐츠 상단 배치를 위한 컨테이너 */
+  .main-content-header {
+    position: relative; /* fixed 해제: 컨텐츠 흐름에 따라 배치 */
+    width: 100%;
+    max-width: 800px; /* 본문 너비에 맞춤 */
+    margin: 0.2em auto 0.2em auto; /* 상단바와 적당한 간격 유지 */
+    padding: 0 1em;
+    z-index: 10;
+  }
+
+  /* 노션 카드 스타일 상속 및 본문 최적화 */
+  .content-top-version {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(145deg, #2d333b, #22272e) !important;
+    padding: 1.5em 2em !important;
+    border-radius: 16px;
+    border: 1px solid #3d444d !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  }
+
+  .content-top-version:hover {
+    transform: translateY(-5px);
+    border-color: #4da3ff !important;
+    box-shadow: 0 15px 35px rgba(77, 163, 255, 0.15) !important;
+  }
+
+  .content-top-version .notion-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 10px;
+    margin-right: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content-top-version .notion-title {
+    color: #ffffff !important;
+    font-size: 1.3em !important;
+    margin: 0 0 0.3em 0 !important;
+    font-weight: 700;
+  }
+
+  .content-top-version .notion-desc {
+    color: #cbd5e0 !important;
+    font-size: 0.95em !important;
+    margin: 0 !important;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .content-top-version .notion-action {
+    flex-shrink: 0;
+    color: #4da3ff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 1.5em;
+    padding: 10px 20px;
+    background: rgba(77, 163, 255, 0.1);
+    border-radius: 8px;
+  }
+
+  /* 모바일 대응 */
+  @media (max-width: 768px) {
+    .main-content-header { margin-top: 1em; }
+    .content-top-version { flex-direction: column; text-align: center; padding: 1.5em !important; }
+    .content-top-version .notion-icon { margin: 0 0 1em 0; }
+    .content-top-version .notion-desc { text-align: center; }
+    .content-top-version .notion-action { margin: 1.2em 0 0 0; width: 100%; justify-content: center; }
+  }
 </style>
 
 <script>
