@@ -13,13 +13,30 @@ classes: wide
 
   <div class="entries-grid">
     {% for post in site.categories["sdks"] %}
-      <a href="{{ post.url | relative_url }}" class="project-card">
+      <a href="{{ post.url | relative_url }}" class="project-card{% if post.badges contains 'active' %} project-card--hot{% endif %}">
         {% if post.header.teaser %}
           <div class="project-teaser">
             <img src="{{ post.header.teaser | relative_url }}" alt="Teaser Image">
           </div>
         {% endif %}
-        
+
+        {% if post.badges %}
+          <div class="badge-row">
+            {% for badge in post.badges %}
+              <span class="badge badge-{{ badge }}">
+                <span class="badge-dot"></span>
+                {% case badge %}
+                  {% when 'new' %}신규 출시
+                  {% when 'active' %}HOT
+                  {% when 'wiki' %}공식 Wiki
+                  {% when 'stable' %}안정 버전
+                  {% when 'beta' %}베타
+                {% endcase %}
+              </span>
+            {% endfor %}
+          </div>
+        {% endif %}
+
         <h2 class="project-title">
           {{ post.title }}
         </h2>
@@ -262,6 +279,164 @@ classes: wide
 
   .notion-special-card:hover .notion-action {
     background: rgba(77, 163, 255, 0.2);
+  }
+
+  /* 6. 배지 스타일 */
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .badge-new {
+    background: rgba(51, 188, 120, 0.15);
+    color: #3dba78;
+    border: 1px solid rgba(51, 188, 120, 0.3);
+  }
+  .badge-new .badge-dot { background: #3dba78; }
+
+  .badge-active {
+    background: rgba(247, 79, 60, 0.15);
+    color: #ff0000;
+    border: 1px solid rgba(247, 60, 60, 0.3);
+    animation: badge-pulse 2s ease-in-out infinite;
+  }
+  .badge-active .badge-dot { background: #ff0000; }
+
+  @keyframes badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(247, 155, 60, 0); }
+    50%       { box-shadow: 0 0 0 4px rgba(247, 155, 60, 0.15); }
+  }
+
+  .badge-wiki {
+    background: rgba(77, 163, 255, 0.15);
+    color: #4da3ff;
+    border: 1px solid rgba(77, 163, 255, 0.3);
+  }
+  .badge-wiki .badge-dot { background: #4da3ff; }
+
+  .badge-stable {
+    background: rgba(140, 140, 160, 0.15);
+    color: #a0aab8;
+    border: 1px solid rgba(140, 140, 160, 0.3);
+  }
+  .badge-stable .badge-dot { background: #a0aab8; }
+
+  .badge-beta {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+  }
+  .badge-beta .badge-dot { background: #c084fc; }
+
+  /* 7. HOT 카드 강조 */
+  /* 7. HOT 카드 강조 (네온 글로우 + 샤인 + 불티 파티클) */
+  .project-card--hot {
+    position: relative;
+    overflow: hidden; /* 내부 파티클과 빛 효과가 카드 밖으로 벗어나지 않게 클리핑 */
+    animation: card-hot-neon 2s ease-in-out infinite alternate;
+  }
+
+  /* 네온 글로우 펄스 애니메이션 */
+  @keyframes card-hot-neon {
+    0% {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 15px rgba(255, 79, 60, 0.2), inset 0 0 10px rgba(255, 79, 60, 0.1);
+      border-color: rgba(255, 79, 60, 0.4) !important;
+    }
+    100% {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 25px rgba(255, 79, 60, 0.6), 0 0 15px rgba(255, 200, 0, 0.3), inset 0 0 20px rgba(255, 79, 60, 0.2);
+      border-color: rgba(255, 180, 0, 0.8) !important;
+    }
+  }
+
+  /* 스쳐 지나가는 빛 (Shimmer/Shine) 효과 */
+  .project-card--hot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    animation: hot-shine 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  @keyframes hot-shine {
+    0%, 50% { left: -150%; }
+    100% { left: 200%; }
+  }
+
+  /* 불티(Embers) 파티클 효과 (CSS box-shadow 활용) */
+  .project-card--hot::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: transparent;
+    /* 여러 개의 파티클을 좌표(box-shadow)로 생성 */
+    box-shadow: 
+      40px 20px 2px rgba(255, 100, 50, 0.8),
+      120px 40px 1px rgba(255, 200, 50, 0.6),
+      200px 10px 3px rgba(255, 50, 50, 0.9),
+      280px 50px 2px rgba(255, 150, 50, 0.7),
+      360px 30px 1px rgba(255, 100, 50, 0.5),
+      80px 60px 2px rgba(255, 200, 50, 0.8);
+    animation: hot-embers 3s linear infinite;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  @keyframes hot-embers {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(-150px) scale(0.5); opacity: 0; }
+  }
+
+  /* 호버 시 강조 효과 (애니메이션 정지 및 강한 글로우) */
+  .project-card--hot:hover {
+    transform: translateY(-5px);
+    animation: none !important;
+    border-color: #ffb74d !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 40px 10px rgba(255, 79, 60, 0.4), inset 0 0 20px rgba(255, 79, 60, 0.3) !important;
+  }
+  
+  /* HOT 카드 전용 타이틀 색상 및 호버 처리 */
+  .project-card--hot .project-title {
+    color: #ff8a65 !important;
+    border-bottom-color: rgba(255, 138, 101, 0.3) !important;
+  }
+  
+  .project-card--hot:hover .project-title {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 138, 101, 0.8);
   }
 
   /* 모바일 대응 */

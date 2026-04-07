@@ -6,6 +6,8 @@ classes: wide
 read_time: true
 excerpt: "Pure Unity에서 가능한 '최고 성능 Pooling 시스템'"
 
+badges: [beta]
+
 tags:
   - Unity
   - OpenSource
